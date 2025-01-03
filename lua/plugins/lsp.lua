@@ -118,9 +118,12 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
 
-        pyright = {
+        basedpyright = {
           settings = {
-            pyright = {
+            basedpyright = {
+              analysis = {
+                diagnosticMode = "workspace",
+              },
               -- Using Ruff's import organizer
               disableOrganizeImports = true,
             },

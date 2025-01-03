@@ -14,6 +14,8 @@ return {
     config = function()
       local capabilities = require("blink.cmp").get_lsp_capabilities()
       require("mason-lspconfig").setup({
+        automatic_installation = false,
+
         ensure_installed = {
           "eslint",
           "lua_ls",
