@@ -41,10 +41,11 @@ return {
 
           map("<leader>ld", require("telescope.builtin").lsp_definitions, "[D]efinition")
           map("<leader>lr", require("telescope.builtin").lsp_references, "[R]eferences")
+          map("<leader>lh", vim.diagnostic.open_float, "Diagnostic [H]over")
           map("<leader>lI", require("telescope.builtin").lsp_implementations, "[I]mplementation")
           map("<leader>ls", require("telescope.builtin").lsp_document_symbols, "[S]ymbols")
           map("<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace Symbols")
-          map("<leader>lr", vim.lsp.buf.rename, "[R]ename")
+          map("<leader>lR", vim.lsp.buf.rename, "[R]ename")
           map("<leader>lc", vim.lsp.buf.code_action, "[C]ode Action", { "n", "x" })
 
           -- The following two autocommands are used to highlight references of the
@@ -117,6 +118,15 @@ return {
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
+        zls = {},
+        rust_analyzer = {
+          checkOnSave = {
+            command = "clippy",
+          },
+          check = {
+            command = "clippy",
+          },
+        },
 
         basedpyright = {
           settings = {

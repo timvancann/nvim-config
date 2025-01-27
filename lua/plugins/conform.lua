@@ -4,7 +4,7 @@ return { -- Autoformat
   cmd = { "ConformInfo" },
   keys = {
     {
-      "<leader>f",
+      "<leader>lf",
       function()
         require("conform").format({ async = true, lsp_format = "fallback" })
       end,
@@ -32,8 +32,17 @@ return { -- Autoformat
     end,
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "ruff" },
-      typescript = { "prettier" },
+      python = {
+        -- To fix auto-fixable lint errors.
+        "ruff_fix",
+        -- To run the Ruff formatter.
+        "ruff_format",
+        -- To organize the imports.
+        "ruff_organize_imports",
+      },
+
+      typescript = { "prettierd", "prettier" },
+      typescriptreact = { "prettierd", "prettier" },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
