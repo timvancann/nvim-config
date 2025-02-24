@@ -11,7 +11,6 @@ return {
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { "j-hui/fidget.nvim", opts = {} },
-
       { "saghen/blink.cmp" },
       {
         "folke/lazydev.nvim",
@@ -107,26 +106,8 @@ return {
       capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
         zls = {},
-        rust_analyzer = {
-          checkOnSave = {
-            command = "clippy",
-          },
-          check = {
-            command = "clippy",
-          },
-        },
 
         basedpyright = {
           settings = {
@@ -145,7 +126,6 @@ return {
             },
           },
         },
-        tailwindcss = {},
         ruff = {},
         prettier = {},
         lua_ls = {

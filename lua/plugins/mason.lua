@@ -21,7 +21,6 @@ return {
           "lua_ls",
           "ruff",
           "tailwindcss",
-          "rust_analyzer",
           "ts_ls",
         },
       })

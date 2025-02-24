@@ -26,7 +26,75 @@ return { -- Collection of various small independent plugins/modules
     })
     require("mini.icons").setup()
     require("mini.bracketed").setup()
-    require("mini.pairs").setup()
+    require("mini.pairs").setup({
+      modes = { insert = true, command = false, terminal = false },
+      mappings = {
+        [")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
+        ["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
+        ["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\]." },
+        ["["] = {
+          action = "open",
+          pair = "[]",
+          neigh_pattern = ".[%s%z%)}%]]",
+          register = { cr = false },
+          -- foo|bar -> press "[" -> foo[bar
+          -- foobar| -> press "[" -> foobar[]
+          -- |foobar -> press "[" -> [foobar
+          -- | foobar -> press "[" -> [] foobar
+          -- foobar | -> press "[" -> foobar []
+          -- {|} -> press "[" -> {[]}
+          -- (|) -> press "[" -> ([])
+          -- [|] -> press "[" -> [[]]
+        },
+        ["{"] = {
+          action = "open",
+          pair = "{}",
+          -- neigh_pattern = ".[%s%z%)}]",
+          neigh_pattern = ".[%s%z%)}%]]",
+          register = { cr = false },
+          -- foo|bar -> press "{" -> foo{bar
+          -- foobar| -> press "{" -> foobar{}
+          -- |foobar -> press "{" -> {foobar
+          -- | foobar -> press "{" -> {} foobar
+          -- foobar | -> press "{" -> foobar {}
+          -- (|) -> press "{" -> ({})
+          -- {|} -> press "{" -> {{}}
+        },
+        ["("] = {
+          action = "open",
+          pair = "()",
+          -- neigh_pattern = ".[%s%z]",
+          neigh_pattern = ".[%s%z%)]",
+          register = { cr = false },
+          -- foo|bar -> press "(" -> foo(bar
+          -- foobar| -> press "(" -> foobar()
+          -- |foobar -> press "(" -> (foobar
+          -- | foobar -> press "(" -> () foobar
+          -- foobar | -> press "(" -> foobar ()
+        },
+        -- Single quote: Prevent pairing if either side is a letter
+        ['"'] = {
+          action = "closeopen",
+          pair = '""',
+          neigh_pattern = "[^%w\\][^%w]",
+          register = { cr = false },
+        },
+        -- Single quote: Prevent pairing if either side is a letter
+        ["'"] = {
+          action = "closeopen",
+          pair = "''",
+          neigh_pattern = "[^%w\\][^%w]",
+          register = { cr = false },
+        },
+        -- Backtick: Prevent pairing if either side is a letter
+        ["`"] = {
+          action = "closeopen",
+          pair = "``",
+          neigh_pattern = "[^%w\\][^%w]",
+          register = { cr = false },
+        },
+      },
+    })
     require("mini.files").setup({
       vim.keymap.set("n", "-", function()
         MiniFiles.open(vim.api.nvim_buf_get_name(0))

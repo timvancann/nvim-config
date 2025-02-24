@@ -14,7 +14,7 @@ return {
     picker = { enabled = true },
     notifier = { enabled = false },
     quickfile = { enabled = false },
-    scroll = { enabled = true },
+    scroll = { enabled = false },
     statuscolumn = { enabled = true },
     words = { enabled = true },
   },
@@ -108,7 +108,7 @@ return {
     },
     -- Grep
     {
-      "<leader>fsb",
+      "/",
       function()
         Snacks.picker.lines()
       end,
