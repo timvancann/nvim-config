@@ -10,6 +10,7 @@ return {
     "moyiz/blink-emoji.nvim",
     "L3MON4D3/LuaSnip",
     "giuxtaposition/blink-cmp-copilot",
+    "fang2hou/blink-copilot",
   },
 
   ---@module 'blink.cmp'
@@ -104,7 +105,7 @@ return {
       end,
     },
     sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "lsp", "path", "snippets", "buffer", "copilot" },
       providers = {
         snippets = {
           name = "snippets",

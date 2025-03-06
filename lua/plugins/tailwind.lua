@@ -5,29 +5,27 @@ return {
     build = ":UpdateRemotePlugins",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim", -- optional
+      "nvim-telescope/telescope.nvim",
+      "neovim/nvim-lspconfig",
     },
     opts = {
-      settings = {
-        includeLanguages = {
-          rust = "html",
+      server = {
+        settings = {
+          experimental = {
+            classRegex = {
+              'class\\s*:\\s*"([^"]*)',
+            },
+          },
         },
       },
       extension = {
-        queries = {
-          "rust",
-        }, -- a list of filetypes having custom `class` queries
-        patterns = { -- a map of filetypes to Lua pattern lists
-          -- example:
+        queries = { "rust " },
+        patterns = {
           rust = {
-            "class: [\"'](.*)[\"']",
-            "className: [\"'](.*)[\"']",
-            'class: "\\s*(.*)',
-            'className: "\\s*(.*)',
+            'class: "(.*)"',
           },
-          -- javascript = { "clsx%(([^)]+)%)" },
         },
       },
-    }, -- your configuration
+    },
   },
 }
