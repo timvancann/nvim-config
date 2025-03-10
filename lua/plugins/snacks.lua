@@ -11,7 +11,9 @@ return {
     dashboard = { enabled = true },
     indent = { enabled = false },
     input = { enabled = true },
-    picker = { enabled = true },
+    picker = { enabled = true, sources = {
+      files = { hidden = true },
+    } },
     notifier = { enabled = false },
     quickfile = { enabled = false },
     scroll = { enabled = false },
@@ -19,14 +21,6 @@ return {
     words = { enabled = true },
   },
   keys = {
-    {
-      "\\",
-      function()
-        Snacks.explorer()
-      end,
-      desc = "File Explorer",
-    },
-
     {
       "<leader>,",
       function()
