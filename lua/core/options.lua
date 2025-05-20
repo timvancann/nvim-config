@@ -61,8 +61,15 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    -- Show diagnostics in a floating window
+    vim.diagnostic.open_float(nil, { focusable = true })
+  end,
+})
+
 local default_config = { virtual_lines = { current_line = true } }
-vim.diagnostic.config(default_config)
+--vim.diagnostic.config(default_config)
 
 vim.keymap.set("n", "<leader>k", function()
   -- virtual_lines is either a table or true/false, let's just check for the
