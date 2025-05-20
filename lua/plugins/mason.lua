@@ -1,20 +1,20 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     config = function()
       require("mason").setup()
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     dependencies = {
-      { "williamboman/mason.nvim" },
+      { "mason-org/mason.nvim" },
       { "saghen/blink.cmp" },
     },
     config = function()
       local capabilities = require("blink.cmp").get_lsp_capabilities()
       require("mason-lspconfig").setup({
-        automatic_installation = false,
+        automatic_installation = true,
 
         ensure_installed = {
           "eslint",
@@ -22,12 +22,9 @@ return {
           "ruff",
           "tailwindcss",
           "ts_ls",
+          "svelte",
+          "basedpyright",
         },
-      })
-      require("mason-lspconfig").setup_handlers({
-        function(server_name)
-          require("lspconfig")[server_name].setup({ capabilities = capabilities })
-        end,
       })
     end,
   },

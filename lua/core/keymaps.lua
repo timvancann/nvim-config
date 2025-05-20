@@ -24,28 +24,22 @@ vim.keymap.set("n", "<leader>bc", ":bdelete!<CR>", { desc = "[C]lose" }) -- clos
 vim.keymap.set("n", "<leader>bb", "<cmd> enew <CR>", { desc = "New [B]uffer" }) -- new buffer
 
 -- Tabs
-vim.keymap.set("n", "<leader>tt", ":tabnew<CR>", { desc = "New [T]ab" }) -- open new tab
-vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", { desc = "[C]lose" }) -- close current tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", { desc = "[N]ext" }) --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "[P]revious" }) --  go to previous tab
+--vim.keymap.set("n", "<leader>tt", ":tabnew<CR>", { desc = "New [T]ab" }) -- open new tab
+--vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", { desc = "[C]lose" }) -- close current tab
+--vim.keymap.set("n", "<leader>tn", ":tabn<CR>", { desc = "[N]ext" }) --  go to next tab
+--vim.keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "[P]revious" }) --  go to previous tab
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+local opts = { buffer = 0 }
+vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=float<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tn", "<cmd>ToggleTerm direction=horizontal<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ti", "<cmd>ToggleTerm direction=vertical<CR>", { noremap = true, silent = true })
 
--- TIP: Disable arrow keys in normal mode
-vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
-
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
-
-vim.keymap.set("n", "<Up>", ":resize -2<CR>", { desc = "Resize vertical" })
-vim.keymap.set("n", "<Down>", ":resize +2<CR>", { desc = "Resize vertical" })
-vim.keymap.set("n", "<Left>", ":vertical resize -2<CR>", { desc = "Resize horizontally" })
-vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", { desc = "Resize horizontally" })
+vim.keymap.set("n", "<C-Left>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<C-Right>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<C-Down>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<C-Up>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 vim.keymap.set("v", "<", "<gv", { desc = "Re-select" })
 vim.keymap.set("v", ">", ">gv", { desc = "Re-select" })

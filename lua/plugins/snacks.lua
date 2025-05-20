@@ -9,7 +9,7 @@ return {
     -- refer to the configuration section below
     bigfile = { enabled = false },
     dashboard = { enabled = true },
-    indent = { enabled = false },
+    indent = { enabled = true },
     input = { enabled = true },
     picker = { enabled = true, sources = {
       files = { hidden = true },
@@ -18,9 +18,19 @@ return {
     quickfile = { enabled = false },
     scroll = { enabled = false },
     statuscolumn = { enabled = true },
+    lazygit = { enabled = true },
+    terminal = { enabled = false },
     words = { enabled = true },
   },
   keys = {
+    {
+      "<leader>gg",
+      function()
+        Snacks.lazygit()
+      end,
+      desc = "Lazygit",
+    },
+
     {
       "<leader>,",
       function()
@@ -102,7 +112,7 @@ return {
     },
     -- Grep
     {
-      "/",
+      "<leader>b/",
       function()
         Snacks.picker.lines()
       end,

@@ -11,7 +11,7 @@ return {
       vim.keymap.set("n", "\\", function()
         local current_win = vim.api.nvim_get_current_win()
         vim.cmd("NvimTreeFindFile")
-        vim.api.nvim_set_current_win(current_win)
+        --vim.api.nvim_set_current_win(current_win)
       end, { silent = true }),
     })
   end,
